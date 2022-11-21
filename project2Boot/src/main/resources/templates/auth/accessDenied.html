@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Denied</title>
+</head>
+<body>
+    <div>Доступ запрещен</div>
+    <br>
+    <a href="/books">Перейти в раздел Книги</a>
+    <br>
+    <br>
+    <form method="post" th:action="@{/auth/logout}">
+        <input type="submit" value="Выход">
+    </form>
+</body>
+</html>

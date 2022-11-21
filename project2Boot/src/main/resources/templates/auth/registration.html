@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" th:action="@{/auth/registration}">
+    <div th:object="${person}">
+        <label th:for="username">Имя пользователя</label>
+        <input type="text" th:field="*{username}" id="username">
+        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Name error</div>
+        <br>
+        <br>
+        <label th:for="password">Пароль</label>
+        <input type="password" th:field="*{password}" id="password">
+        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+        <br>
+        <br>
+        <label th:for="year">Год рождения</label>
+        <input type="text" th:field="*{year}" id="year">
+        <div style="color: red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
+        <br>
+        <br>
+    </div>
+
+    <div th:if="${admin}">
+            <label for="roleList">Выберите роль</label>
+            <select th:object="${person}" th:field="*{role}" id="roleList">
+                <option th:each="role : ${roleList}" th:value="${role}" th:text="${role}"></option>
+            </select>
+    </div>
+    <br>
+
+
+    <input type="submit" value="Зарегистрировать">
+</form>
+
+<br>
+<div th:unless="${admin}">
+    <a href="/auth/login">Назад</a>
+</div>
+<div th:if="${admin}">
+    <a href="/people">Назад</a>
+</div>
+</body>
+</html>
